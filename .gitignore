@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+*.log
+.DS_Store
+
+# Heavy reference documents & PDFs (to keep repository lightweight for deployment)
+*.pdf
+*.pptx
+*.docx
+*Demo_hd1.xlsx
+all_sheet1_columns.txt
+aod_model/

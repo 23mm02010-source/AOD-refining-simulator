@@ -79,35 +79,7 @@ streamlit run app.py
 Your default web browser will automatically open:
 ```
 Local URL: http://localhost:8501
-```
 
----
-
-## 🌐 Deploy to Streamlit Community Cloud (Free Public Access)
-
-To share this simulator with your professor or evaluators with a 24/7 public link:
-
-1. Push this folder to your GitHub account (containing `app.py`, `requirements.txt`, and `README.md`).
-2. Visit **[share.streamlit.io](https://share.streamlit.io)** and sign in with GitHub.
-3. Click **"New app"** and select:
-   * **Repository:** `your-username/aod-refining-simulator`
-   * **Branch:** `main`
-   * **Main file path:** `app.py`
-4. Click **"Deploy!"**
-5. Streamlit will generate a public URL (e.g. `https://aod-refining-simulator.streamlit.app`) accessible on any computer or mobile device.
-
----
-
-## 📂 Repository File Structure
-
-```
-├── app.py                  # Main interactive Streamlit web application
-├── requirements.txt        # Python package dependencies
-├── README.md               # Project documentation & mathematical manual
-└── AOD_Model_postmidsem.ipynb # Jupyter notebook for mathematical derivation
-```
-
----
 
 ## 📖 Key References
 

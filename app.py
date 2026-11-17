@@ -28,26 +28,41 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom Styling
+# Custom Styling - Seamless Dark & Light Mode Theme Adaptability
 st.markdown("""
 <style>
+    /* Theme-Adaptive Executive Header */
     .main-title {
-        font-size: 2.1rem;
+        font-size: 2.15rem;
         font-weight: 700;
-        color: #0F172A;
-        margin-bottom: 0.15rem;
+        color: var(--text-color, #FAFAFA);
+        margin-bottom: 0.25rem;
         letter-spacing: -0.02em;
     }
     .sub-title {
         font-size: 1.0rem;
-        color: #475569;
-        margin-bottom: 1.2rem;
+        color: var(--text-color, #CBD5E1);
+        opacity: 0.85;
+        margin-bottom: 1.25rem;
     }
-    .stMetric {
-        background-color: #F8FAFC;
-        border: 1px solid #E2E8F0;
-        padding: 10px;
-        border-radius: 6px;
+    
+    /* Theme-Adaptive Metric KPI Cards */
+    [data-testid="stMetric"], .stMetric {
+        background-color: var(--secondary-background-color, rgba(128, 128, 128, 0.08)) !important;
+        border: 1px solid rgba(128, 128, 128, 0.25) !important;
+        padding: 12px 16px !important;
+        border-radius: 8px !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    }
+    
+    /* Ensure Metric Labels & Values adapt with high contrast in both themes */
+    [data-testid="stMetricLabel"], [data-testid="stMetricLabel"] * {
+        color: var(--text-color, inherit) !important;
+        opacity: 0.85;
+    }
+    [data-testid="stMetricValue"], [data-testid="stMetricValue"] * {
+        color: var(--text-color, inherit) !important;
+        font-weight: 700 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -479,7 +494,15 @@ with tab_plotly:
         fig1.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Carbon'], mode='lines', name='Carbon (C %)', line=dict(color='#1f77b4', width=2.5)))
         fig1.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Manganese'], mode='lines', name='Manganese (Mn %)', line=dict(color='#d62728', width=2.5)))
         fig1.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Silicon'], mode='lines', name='Silicon (Si %)', line=dict(color='#2ca02c', width=2.5)))
-        fig1.update_layout(title="<b>1. Metal Bath Composition: C, Si, Mn vs. Time</b>", xaxis_title="Time (s)", yaxis_title="Weight Percentage (%)", template="plotly_white", hovermode="x unified", height=400)
+        fig1.update_layout(
+            title="<b>1. Metal Bath Composition: C, Si, Mn vs. Time</b>",
+            xaxis_title="Time (s)",
+            yaxis_title="Weight Percentage (%)",
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            hovermode="x unified",
+            height=400
+        )
         st.plotly_chart(fig1, use_container_width=True)
 
     # 2. Major elements (Cr & Fe Dual Axis)
@@ -487,7 +510,14 @@ with tab_plotly:
         fig2 = make_subplots(specs=[[{"secondary_y": True}]])
         fig2.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Chromium'], mode='lines', name='Chromium (Cr %)', line=dict(color='#ff7f0e', width=2.5)), secondary_y=False)
         fig2.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Iron'], mode='lines', name='Iron (Fe %)', line=dict(color='#7f7f7f', width=2.0, dash='dash')), secondary_y=True)
-        fig2.update_layout(title="<b>2. Metal Bath Composition: Cr & Fe vs. Time</b>", xaxis_title="Time (s)", template="plotly_white", hovermode="x unified", height=400)
+        fig2.update_layout(
+            title="<b>2. Metal Bath Composition: Cr & Fe vs. Time</b>",
+            xaxis_title="Time (s)",
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            hovermode="x unified",
+            height=400
+        )
         fig2.update_yaxes(title_text="Chromium Weight %", secondary_y=False)
         fig2.update_yaxes(title_text="Iron Weight %", secondary_y=True)
         st.plotly_chart(fig2, use_container_width=True)
@@ -503,7 +533,15 @@ with tab_plotly:
         fig3.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Slag_MnO(%)'], mode='lines', name='MnO (%)', line=dict(color='#d62728', width=2.0)))
         fig3.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Slag_MgO(%)'], mode='lines', name='MgO (%)', line=dict(color='#9467bd', width=1.8, dash='dashdot')))
         fig3.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Slag_FeO(%)'], mode='lines', name='FeO (%)', line=dict(color='#8c564b', width=1.8, dash='dot')))
-        fig3.update_layout(title="<b>3. Slag Composition Evolution vs. Time</b>", xaxis_title="Time (s)", yaxis_title="Slag Weight Percentage (%)", template="plotly_white", hovermode="x unified", height=400)
+        fig3.update_layout(
+            title="<b>3. Slag Composition Evolution vs. Time</b>",
+            xaxis_title="Time (s)",
+            yaxis_title="Slag Weight Percentage (%)",
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            hovermode="x unified",
+            height=400
+        )
         st.plotly_chart(fig3, use_container_width=True)
 
     # 4. Bath Temperature
@@ -511,7 +549,14 @@ with tab_plotly:
         fig4 = make_subplots(specs=[[{"secondary_y": True}]])
         fig4.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Temperature'], mode='lines', name='Temperature (K)', line=dict(color='#e31a1c', width=2.5)), secondary_y=False)
         fig4.add_trace(go.Scatter(x=df_sim['Time'], y=df_sim['Temperature (°C)'], mode='lines', name='Temperature (°C)', line=dict(color='#b10026', width=0)), secondary_y=True)
-        fig4.update_layout(title="<b>4. Bath Temperature vs. Time (K & °C)</b>", xaxis_title="Time (s)", template="plotly_white", hovermode="x unified", height=400)
+        fig4.update_layout(
+            title="<b>4. Bath Temperature vs. Time (K & °C)</b>",
+            xaxis_title="Time (s)",
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            hovermode="x unified",
+            height=400
+        )
         fig4.update_yaxes(title_text="Temperature (K)", secondary_y=False)
         fig4.update_yaxes(title_text="Temperature (°C)", secondary_y=True)
         st.plotly_chart(fig4, use_container_width=True)

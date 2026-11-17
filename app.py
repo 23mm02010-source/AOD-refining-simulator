@@ -143,7 +143,7 @@ def run_aod_simulation(initial_C, initial_Cr, initial_Si, initial_Mn, initial_Ni
     dC_dt = 0.0
 
     # 2. SIMULATION LOOP
-    for t in range(2, int(duration) + dt, dt):
+    for t in range(dt, int(duration) + dt, dt):
             
         # Activity Coefficients (f_i)
         log_f_C = (0.14 * pct_C) - (0.024 * pct_Cr) + (0.08 * pct_Si) + (0.012 * pct_Ni)
@@ -231,7 +231,7 @@ def run_aod_simulation(initial_C, initial_Cr, initial_Si, initial_Mn, initial_Ni
         K_Si = 10 ** ((17770.0 / T) - 6.122)
         K_Mn = 10 ** ((8695.0 / T) - 3.93)
         
-        if t == 2:
+        if t == dt:
             P_CO = 0.75 
         else:
             n_CO_sec = (W_m / (100.0 * M_C)) * abs(dC_dt)

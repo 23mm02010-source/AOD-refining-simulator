@@ -23,8 +23,7 @@ from plotly.subplots import make_subplots
 # PAGE CONFIGURATION
 # =============================================================================
 st.set_page_config(
-    page_title="AOD Refining Simulator | Interactive Model",
-    page_icon="🔥",
+    page_title="AOD Refining Simulator | Mathematical Model",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -33,27 +32,28 @@ st.set_page_config(
 st.markdown("""
 <style>
     .main-title {
-        font-size: 2.2rem;
-        font-weight: 800;
-        color: #1E3A8A;
-        margin-bottom: 0.2rem;
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #0F172A;
+        margin-bottom: 0.15rem;
+        letter-spacing: -0.02em;
     }
     .sub-title {
-        font-size: 1.05rem;
-        color: #4B5563;
+        font-size: 1.0rem;
+        color: #475569;
         margin-bottom: 1.2rem;
     }
     .stMetric {
         background-color: #F8FAFC;
         border: 1px solid #E2E8F0;
         padding: 10px;
-        border-radius: 8px;
+        border-radius: 6px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-title">🔥 AOD Stainless Steel Refining Simulator</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">Interactive Mathematical Model with Chromium Kinetics, Dynamic Slag & Thermochemical Heat Balance</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">AOD Stainless Steel Refining Simulator</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-title">Mathematical Model with Chromium Kinetics, Dynamic Slag & Thermochemical Heat Balance (Wei Zhu 2002)</div>', unsafe_allow_html=True)
 
 # =============================================================================
 # SIMULATION ENGINE FUNCTION (EXACT FINAL USER MODEL)
@@ -391,7 +391,7 @@ def run_aod_simulation(initial_C, initial_Cr, initial_Si, initial_Mn, initial_Ni
 # SIDEBAR CONTROLS (USER INPUTS)
 # =============================================================================
 with st.sidebar:
-    st.header("⚙️ Simulation Inputs")
+    st.header("Simulation Inputs")
     
     with st.expander("1. Hot Metal Composition (wt.%)", expanded=True):
         col1, col2 = st.columns(2)
@@ -424,7 +424,7 @@ with st.sidebar:
             inp_dt = st.number_input("Time Step dt (s)", min_value=1, max_value=5, value=2, step=1)
         st.caption(f"Total Steps: **{int(inp_duration / inp_dt)} discrete steps**")
 
-    run_sim = st.button("🚀 Run AOD Simulation", type="primary", use_container_width=True)
+    run_sim = st.button("Run AOD Simulation", type="primary", use_container_width=True)
 
 # =============================================================================
 # RUN SIMULATION & DISPLAY
@@ -466,7 +466,7 @@ st.markdown("---")
 # =============================================================================
 # THE 4 USER PLOTS (INTERACTIVE PLOTLY & MATPLOTLIB)
 # =============================================================================
-st.subheader("📊 Simulation Trajectory (The 4 Key Engineering Plots)")
+st.subheader("Process Dynamics: 4-Panel Simulation Trajectory")
 
 tab_plotly, tab_mpl = st.tabs(["Interactive Charts (Plotly)", "Publication 4-Panel Plot (Matplotlib)"])
 
@@ -579,7 +579,7 @@ with tab_mpl:
 # DATA TABLE & EXPORT
 # =============================================================================
 st.markdown("---")
-st.subheader("📋 Step-by-Step Simulation Telemetry Table")
+st.subheader("Step-by-Step Simulation Telemetry Table")
 
 col_d1, col_d2 = st.columns([4, 1])
 with col_d1:
@@ -587,7 +587,7 @@ with col_d1:
 with col_d2:
     csv_bytes = df_sim.to_csv(index=False).encode('utf-8')
     st.download_button(
-        label="📥 Download CSV Table",
+        label="Download CSV Table",
         data=csv_bytes,
         file_name=f"AOD_Simulation_C{inp_C:.1f}_Cr{inp_Cr:.1f}.csv",
         mime="text/csv",

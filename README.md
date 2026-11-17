@@ -1,4 +1,4 @@
-# 🔥 AOD Stainless Steel Refining Simulator
+# AOD Stainless Steel Refining Simulator
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -10,7 +10,7 @@ This model reproduces and expands upon the seminal work of **Wei Zhu (2002)** (*
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 During AOD stainless steelmaking, hot metal containing dissolved Carbon ($\text{C}$), Silicon ($\text{Si}$), Manganese ($\text{Mn}$), and valuable Chromium ($\text{Cr}$) is refined using high-velocity oxygen gas. Because the process is autogenous (it heats itself without external heating arcs), predicting the competition between **decarburization** and **chromium oxidation** requires simultaneously solving:
 
@@ -22,7 +22,7 @@ During AOD stainless steelmaking, hot metal containing dissolved Carbon ($\text{
 
 ---
 
-## 🔬 Core Mathematical Formulation
+## Mathematical Formulation
 
 ### 1. Metal Bath Activity Coefficients (Wagner 1st-Order)
 $$\log_{10} f_i = \sum_{j} e_i^j \cdot [\% j]$$
@@ -43,7 +43,7 @@ $$\frac{dT}{dt} = \frac{\sum r_i \Delta H_i(T) - c_{p,s} T \sum \left(\frac{M_{\
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 * **Real-Time Interactive Web Dashboard:** Built with Streamlit for clean, responsive browser controls.
 * **4-Panel Publication Plots:**
@@ -56,7 +56,7 @@ $$\frac{dT}{dt} = \frac{\sum r_i \Delta H_i(T) - c_{p,s} T \sum \left(\frac{M_{\
 
 ---
 
-## 💻 Local Installation & Setup
+## Local Installation & Setup
 
 ### Prerequisites
 * Python 3.9, 3.10, 3.11, or 3.12
@@ -79,10 +79,39 @@ streamlit run app.py
 Your default web browser will automatically open:
 ```
 Local URL: http://localhost:8501
+```
 
+---
 
-## 📖 Key References
+## Deploy to Streamlit Community Cloud (Free Public Access)
+
+To share this simulator with your professor or evaluators with a 24/7 public link:
+
+1. Push this folder to your GitHub account (containing `app.py`, `requirements.txt`, and `README.md`).
+2. Visit **[share.streamlit.io](https://share.streamlit.io)** and sign in with GitHub.
+3. Click **"New app"** and select:
+   * **Repository:** `your-username/aod-refining-simulator`
+   * **Branch:** `main`
+   * **Main file path:** `app.py`
+4. Click **"Deploy!"**
+5. Streamlit will generate a public URL (e.g. `https://aod-refining-simulator.streamlit.app`) accessible on any computer or mobile device.
+
+---
+
+## Repository File Structure
+
+```
+├── app.py                  # Main interactive Streamlit web application
+├── requirements.txt        # Python package dependencies
+├── README.md               # Project documentation & mathematical manual
+└── AOD_Model_postmidsem.ipynb # Jupyter notebook for mathematical derivation
+```
+
+---
+
+## References
 
 1. **Wei, J., & Zhu, Y. (2002).** *Mathematical model for AOD refining process.* ISIJ International, 42(1), 14–22.
 2. **Turkdogan, E. T. (1996).** *Fundamentals of Steelmaking.* The Institute of Materials, London.
 3. **Sigworth, G. K., & Elliott, J. F. (1974).** *The Thermodynamics of Liquid Dilute Iron Alloys.* Metal Science, 8(1), 298–310.
+
